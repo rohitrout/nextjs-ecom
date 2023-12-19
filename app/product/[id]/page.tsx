@@ -1,6 +1,7 @@
 import { fetchProduct } from "@/actions/actions";
 import Link from "next/link";
 import Image from "next/image";
+import Button from "@/components/shared/Button";
 
 const Product = async ({ params }: { params: { id: string } }) => {
   const paramsId = params.id;
@@ -8,7 +9,7 @@ const Product = async ({ params }: { params: { id: string } }) => {
   const { id, title, price, description, image, rating, category } = response;
 
   return (
-    <div className="pt-8">
+    <div className="pt-24">
       <Link href="/">
         <span className="ml-6 border-2 border-blue-300 p-2 px-6 rounded-lg">
           Back
@@ -38,10 +39,13 @@ const Product = async ({ params }: { params: { id: string } }) => {
             <span className="font-bold text-gray-500">Ratings </span>
             {rating?.rate}
           </div>
-          <div className="pt-5">
-            <button className="border-2 border-purple-300 p-2 px-6 rounded-lg font-semibold">
-              Buy Now
-            </button>
+          <div className="pt-5 flex gap-6 items-center">
+            <Button prodData={response} />
+            <Link href="/cart">
+              <button className="border-2 border-purple-300 px-6 py-2 rounded-lg font-semibold">
+                Move to Cart
+              </button>
+            </Link>
           </div>
         </div>
       </section>

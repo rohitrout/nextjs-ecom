@@ -3,7 +3,7 @@ const ProductCard = ({ productData }: any) => {
   const { id, title, price, description, image, rating, category } =
     productData;
   return (
-    <section className="p-3 pt-6 flex flex-col gap-2 border-2 border-gray-400 w-[300px]">
+    <section className="rounded-lg p-3 pt-6 flex flex-col gap-2 border-2 border-gray-300 w-[300px]">
       <div className=" h-[200px] flex justify-center items-center">
         <Image
           src={image}
@@ -23,9 +23,10 @@ const ProductCard = ({ productData }: any) => {
         <span className="font-bold text-gray-500">category </span>
         {category}
       </div>
-      <div>
+      <div className="flex items-center gap-1">
         <span className="font-bold text-gray-500">Ratings </span>
         {rating?.rate}
+        <span>⭐</span>
       </div>
     </section>
   );

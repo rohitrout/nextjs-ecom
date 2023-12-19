@@ -6,7 +6,7 @@ export default async function Home() {
   const response = await fetchProductsData();
   // console.log(response);
   return (
-    <main className="flex min-h-screen flex-wrap gap-4 justify-between p-12">
+    <main className="flex min-h-screen flex-wrap gap-6 justify-between p-12 pt-24">
       {response.map((item: any) => {
         return (
           <Link href={`/product/${item.id}`} key={item.id}>
