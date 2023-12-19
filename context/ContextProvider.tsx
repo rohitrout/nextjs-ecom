@@ -1,11 +1,12 @@
 "use client";
 
 import { createContext, useState } from "react";
+import { ContextValue, CartItemInterface } from "@/types/types";
 
-export const ContextStore = createContext({ cart: [], setCart: () => {} });
+export const ContextStore = createContext<ContextValue | undefined>(undefined);
 
 export function ContextProvider({ children }: { children: React.ReactNode }) {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState<CartItemInterface[]>([]);
 
   const addToCart = (newItem: any) => {
     setCart((prev) => {
@@ -31,7 +32,7 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
   };
 
   const decreaseFromCart = (itemId: any) => {
-    setCart((prev) =>
+    setCart((prev: any[]) =>
       prev.map((item) =>
         item.id === itemId.id
           ? { ...item, cartQuantity: Math.max(item.cartQuantity - 1, 1) }
@@ -40,7 +41,13 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
     );
   };
   // setCart((prev) => [...prev, item]);
-  const value = { cart, setCart, addToCart, removeFromCart, decreaseFromCart };
+  const value: ContextValue = {
+    cart,
+    setCart,
+    addToCart,
+    removeFromCart,
+    decreaseFromCart,
+  };
 
   return (
     <ContextStore.Provider value={value}>{children}</ContextStore.Provider>

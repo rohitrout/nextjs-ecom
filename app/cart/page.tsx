@@ -3,11 +3,13 @@ import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { ContextStore } from "@/context/ContextProvider";
 import CartCard from "@/components/shared/CartCard";
+import { ContextValue } from "@/types/types";
 
 const Cart = () => {
   const router = useRouter();
-  const { cart, addToCart, removeFromCart, decreaseFromCart } =
-    useContext(ContextStore);
+  const { cart, addToCart, removeFromCart, decreaseFromCart } = useContext(
+    ContextStore
+  ) as ContextValue;
 
   const handleCheckout = () => {
     router.push("/checkout");

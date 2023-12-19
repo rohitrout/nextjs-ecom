@@ -2,21 +2,22 @@
 import { useRef, useState } from "react";
 import { useContext } from "react";
 import { ContextStore } from "@/context/ContextProvider";
+import { ContextValue } from "@/types/types";
 
 const Checkout = () => {
   const [summary, setSummary] = useState(false);
-  const { setCart } = useContext(ContextStore);
-  const name = useRef(null);
-  const email = useRef(null);
-  const address = useRef(null);
-  const pincode = useRef(null);
+  const { setCart } = useContext(ContextStore) as ContextValue;
+  const name = useRef<HTMLInputElement | null>(null);
+  const email = useRef<HTMLInputElement | null>(null);
+  const address = useRef<HTMLInputElement | null>(null);
+  const pincode = useRef<HTMLInputElement | null>(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log("Name:", name.current.value);
-    console.log("Email:", email.current.value);
-    console.log("Address:", address.current.value);
-    console.log("Pincode:", pincode.current.value);
+    console.log("Name:", name?.current?.value);
+    console.log("Email:", email?.current?.value);
+    console.log("Address:", address?.current?.value);
+    console.log("Pincode:", pincode?.current?.value);
     setCart([]);
     setSummary(true);
   };
@@ -25,7 +26,7 @@ const Checkout = () => {
     <div className="pt-36 flex flex-col items-center ">
       {summary ? (
         <p className="pt-16 pb-8 text-3xl">
-          Hi! {name.current.value}, Thank you for placing the order with us.
+          Hi! {name?.current?.value}, Thank you for placing the order with us.
         </p>
       ) : (
         <div>
